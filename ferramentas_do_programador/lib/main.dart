@@ -1,6 +1,7 @@
 import "dart:math";
 import "package:flutter/material.dart";
 import "package:ferramentas_do_programador/separar_arquivos.dart";
+import "package:ferramentas_do_programador/converter_cores.dart";
 
 main(){
   runApp(FerramentasDoProgramador());
@@ -16,7 +17,7 @@ class FerramentasDoProgramador extends StatefulWidget{
   var altura_do_rodape = 66;
   var largura_do_menu_lateral = 150; //Este sistema possui 2 menus laterais
   var largura_minima_para_mostrar_menus_laterais = 550; //Deve ser no mínimo o dobro da largura_do_menu_lateral
-  var pagina_do_sistema = SepararArquivos(
+  dynamic pagina_do_sistema = SepararArquivos(
     largura_do_menu_lateral: 150,
     largura_minima_para_mostrar_menus_laterais: 550
   );
@@ -27,7 +28,7 @@ class FerramentasDoProgramador extends StatefulWidget{
 
 class EstadoDoFerramentasDoProgramador extends State<FerramentasDoProgramador>{
   mudar_pagina_do_sistema(pagina_escolhida){
-    var pagina_do_sistema = SepararArquivos(
+    dynamic pagina_do_sistema = SepararArquivos(
       largura_do_menu_lateral: widget.largura_do_menu_lateral,
       largura_minima_para_mostrar_menus_laterais: widget.largura_minima_para_mostrar_menus_laterais
     );
@@ -35,6 +36,12 @@ class EstadoDoFerramentasDoProgramador extends State<FerramentasDoProgramador>{
     switch(pagina_escolhida){
       case "Separar Arquivos":
         pagina_do_sistema = SepararArquivos(
+          largura_do_menu_lateral: widget.largura_do_menu_lateral,
+          largura_minima_para_mostrar_menus_laterais: widget.largura_minima_para_mostrar_menus_laterais
+        );
+      break;
+      case "Converter Cores":
+        pagina_do_sistema = ConverterCores(
           largura_do_menu_lateral: widget.largura_do_menu_lateral,
           largura_minima_para_mostrar_menus_laterais: widget.largura_minima_para_mostrar_menus_laterais
         );
@@ -254,10 +261,28 @@ class EstadoDoMenuDaLateralEsquerda extends State<MenuDaLateralEsquerda>{
                   alignment: Alignment.centerLeft
                 ),
                 onPressed: (){
-                  widget.mudar_pagina_do_sistema("separar_arquivos");
+                  widget.mudar_pagina_do_sistema("Separar Arquivos");
                 },
                 child: Text(
                   "Separar Arquivos",
+                  style: TextStyle(
+                    fontSize: 16
+                  )
+                )
+              ),
+              TextButton(
+                style: ButtonStyle(
+                  padding: espacamento_interno_do_botao,
+                  minimumSize: tamanho_do_botao,
+                  backgroundColor: widget.pagina_do_sistema is ConverterCores ? cor_especial_de_fundo_do_botao : cor_de_fundo_do_botao,
+                  foregroundColor: widget.pagina_do_sistema is ConverterCores ? cor_especial_do_texto_do_botao : cor_do_texto_do_botao,
+                  alignment: Alignment.centerLeft
+                ),
+                onPressed: (){
+                  widget.mudar_pagina_do_sistema("Converter Cores");
+                },
+                child: Text(
+                  "Converter Cores",
                   style: TextStyle(
                     fontSize: 16
                   )
