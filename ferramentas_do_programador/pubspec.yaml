@@ -4,7 +4,7 @@ description: "Várias funcionalidades que criei para facilitar alguns procedimen
 
 publish_to: "none"
 
-version: 2025.2.0
+version: 2025.3.0
 
 environment:
   sdk: ^3.9.0
@@ -16,6 +16,8 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   file_picker: ^10.3.2
+
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
