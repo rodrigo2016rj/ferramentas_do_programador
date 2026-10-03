@@ -4,7 +4,7 @@ description: "Várias funcionalidades que criei para facilitar alguns procedimen
 
 publish_to: "none"
 
-version: 2025.3.0
+version: 2026.1.0
 
 environment:
   sdk: ^3.9.0

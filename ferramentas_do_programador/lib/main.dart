@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:ferramentas_do_programador/separar_arquivos.dart";
 import "package:ferramentas_do_programador/converter_cores.dart";
 import "package:ferramentas_do_programador/calcular_periodos.dart";
+import "package:ferramentas_do_programador/mudar_variavel_user_path.dart";
 
 main(){
   runApp(FerramentasDoProgramador());
@@ -49,6 +50,12 @@ class EstadoDoFerramentasDoProgramador extends State<FerramentasDoProgramador>{
       break;
       case "Calcular Períodos":
         pagina_do_sistema = CalcularPeriodos(
+          largura_do_menu_lateral: widget.largura_do_menu_lateral,
+          largura_minima_para_mostrar_menus_laterais: widget.largura_minima_para_mostrar_menus_laterais
+        );
+      break;
+      case "Mudar User Path":
+        pagina_do_sistema = MudarVariavelUserPath(
           largura_do_menu_lateral: widget.largura_do_menu_lateral,
           largura_minima_para_mostrar_menus_laterais: widget.largura_minima_para_mostrar_menus_laterais
         );
@@ -308,6 +315,24 @@ class EstadoDoMenuDaLateralEsquerda extends State<MenuDaLateralEsquerda>{
                 },
                 child: Text(
                   "Calcular Períodos",
+                  style: TextStyle(
+                    fontSize: 16
+                  )
+                )
+              ),
+              TextButton(
+                style: ButtonStyle(
+                  padding: espacamento_interno_do_botao,
+                  minimumSize: tamanho_do_botao,
+                  backgroundColor: widget.pagina_do_sistema is MudarVariavelUserPath ? cor_especial_de_fundo_do_botao : cor_de_fundo_do_botao,
+                  foregroundColor: widget.pagina_do_sistema is MudarVariavelUserPath ? cor_especial_do_texto_do_botao : cor_do_texto_do_botao,
+                  alignment: Alignment.centerLeft
+                ),
+                onPressed: (){
+                  widget.mudar_pagina_do_sistema("Mudar User Path");
+                },
+                child: Text(
+                  "Mudar User Path",
                   style: TextStyle(
                     fontSize: 16
                   )
