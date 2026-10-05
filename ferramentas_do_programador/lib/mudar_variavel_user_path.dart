@@ -45,7 +45,7 @@ class EstadoDoMudarVariavelUserPath extends State<MudarVariavelUserPath>{
           if(linha.startsWith("PATH")){
             linha = linha.replaceFirst(RegExp(r"^PATH\s+", caseSensitive: false), "");
             linha = linha.replaceFirst(RegExp(r"^REG_[A-Z_]+\s+", caseSensitive: false), "");
-            valor_atual = linha.replaceAll(";", "\r\n");
+            valor_atual = linha.replaceAll(";", "\n");
             break;
           }
         }
