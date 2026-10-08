@@ -26,7 +26,7 @@ class SepararArquivos extends StatefulWidget{
 
 class EstadoDoSepararArquivos extends State<SepararArquivos>{
   selecionar_diretorio(proposito) async {
-    var diretorio_selecionado = await FilePicker.platform.getDirectoryPath();
+    var diretorio_selecionado = await FilePicker.getDirectoryPath();
 
     switch(proposito){
       case "referencia":
@@ -201,7 +201,7 @@ class EstadoDoSepararArquivos extends State<SepararArquivos>{
   }
 
   salvar_resultado() async {
-    var diretorio_selecionado = await FilePicker.platform.getDirectoryPath();
+    var diretorio_selecionado = await FilePicker.getDirectoryPath();
     if(diretorio_selecionado == null){
       //Se cancelar a escolha do local, salvará na Área de Trabalho.
       diretorio_selecionado = (Platform.environment["USERPROFILE"] ?? "") + "\\Desktop";
