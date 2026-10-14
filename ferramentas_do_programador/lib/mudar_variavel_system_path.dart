@@ -11,8 +11,6 @@ class MudarVariavelSystemPath extends StatefulWidget{
   final largura_do_menu_lateral;
   final largura_minima_para_mostrar_menus_laterais;
 
-  var controlador_da_area_de_texto = TextEditingController();
-  var valor_atual = "";
   var status_da_operacao = "";
   var texto_da_operacao = "";
 
@@ -26,6 +24,9 @@ class EstadoDoMudarVariavelSystemPath extends State<MudarVariavelSystemPath>{
     super.initState();
     consultar_valor_atual();
   }
+
+  var controlador_da_area_de_texto = TextEditingController();
+  var valor_atual = "";
 
   Future<void> consultar_valor_atual() async {
     try {
@@ -50,7 +51,7 @@ class EstadoDoMudarVariavelSystemPath extends State<MudarVariavelSystemPath>{
           }
         }
         setState((){
-          widget.valor_atual = valor_atual;
+          this.valor_atual = valor_atual;
         });
       }
     }catch(excecao){
@@ -88,7 +89,7 @@ class EstadoDoMudarVariavelSystemPath extends State<MudarVariavelSystemPath>{
         setState((){
           widget.status_da_operacao = "Concluído.";
           widget.texto_da_operacao = r"O novo valor para o Path foi salvo. Para conferir, abra uma nova janela do PowerShell e consulte por meio do comando: (Get-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Session Manager\Environment').Path -split ';'";
-          widget.valor_atual = backup_novo_valor;
+          this.valor_atual = backup_novo_valor;
         });
       }else{
         setState((){
@@ -152,7 +153,7 @@ class EstadoDoMudarVariavelSystemPath extends State<MudarVariavelSystemPath>{
       }
     );
 
-    widget.controlador_da_area_de_texto.text = widget.valor_atual;
+    this.controlador_da_area_de_texto.text = this.valor_atual;
 
     return Container(
       padding: EdgeInsets.only(top: 12, right: 4, bottom: 16, left: 20),
@@ -184,7 +185,7 @@ class EstadoDoMudarVariavelSystemPath extends State<MudarVariavelSystemPath>{
                     width: largura_da_area_de_texto.toDouble(),
                     height: 400,
                     child: TextField(
-                      controller: widget.controlador_da_area_de_texto,
+                      controller: this.controlador_da_area_de_texto,
                       keyboardType: TextInputType.multiline,
                       minLines: 20,
                       maxLines: null,
@@ -210,7 +211,7 @@ class EstadoDoMudarVariavelSystemPath extends State<MudarVariavelSystemPath>{
                         ),
                         onPressed: (){
                           salvar_novo_valor(
-                            widget.controlador_da_area_de_texto.text
+                            this.controlador_da_area_de_texto.text
                           );
                         },
                         child: Text(
